@@ -6,7 +6,7 @@ library](https://github.com/bem/bem-core) provides
 It is often called a helper block since it's used to build other blocks and
 empowers them with BEM features.
 
-The `i-bem` block is implemented usign a variety of technologies, including JavaScript,
+The `i-bem` block is implemented using a variety of technologies, including JavaScript,
 which provides the framework for coding in BEM terms.
 
 This tutorial details how to use `i-bem` features for JavaScript in your
@@ -15,13 +15,13 @@ components.
 ## JavaScript-enriched block
 ### Prerequisites
 Block `i-bem` and its `dom` element, with all their dependencies, must be included
-into your page js file if you are going to enjoy BEM. This happens
+into your page's js file if you are going to enjoy BEM. This happens
 automatically if you borrow the project structure from the
 [project-stub repository](https://github.com/bem/project-stub/tree/bem-core).
 
 ### HTML structure
-Any BEM block can be equiped with JavaScript. To do this, you just need to place
-a JavaScript file into your block directory.
+Any BEM block can be equipped with JavaScript. To do this, you just need to place
+a JavaScript file into your block's directory.
 
 ```
 ├── desktop.blocks/
@@ -73,7 +73,7 @@ The `data-bem` attribute stores block parameters in JSON, which structure is:
 
 >> <a href="http://varya.me/bem-js-tutorial/desktop.bundles/001-simple-block/001-simple-block.html">001-simple-block.html</a></pre>
 
-The first example is the most simple. It demostrates the block structure and
+The first example is the most simple. It demonstrates the block's structure and
 shows how the JavaScript starts working.<br/>
 Load the example page
 [001-simple-block](http://varya.me/bem-js-tutorial/desktop.bundles/001-simple-block/001-simple-block.html)
@@ -168,7 +168,7 @@ function(modName, modVal, curModVal) {
 }
 ```
 
-The fisrt modifier any block gets is a `js` modifier with its `inited` value.
+The first modifier any block gets is a `js` modifier with its `inited` value.
 The framework core reads all the `i-bem` marked blocks on a page and then initializes
 them and sets the `js_inited` modifier on each block. Thus, you can
 write a code to be run after the block starts functioning by 
@@ -216,7 +216,7 @@ In the callback it is said to set a `calling` modifier
 to the block and the `setMod` method serves for it.
 
 > NOTE: In many cases using bindTo for events listening is not the best solution
-> as it needs to watch every block of the kind. It becames even worse with
+> as it needs to watch every block of the kind. It becomes even worse with
 > elements of the blocks since they are many. You will see below much better way
 > in the `live` section.
 
@@ -250,7 +250,7 @@ this.setMod('status', 'off');
 
 The `setMod` method applies a modifier's CSS class to the blocks which makes the
 block change its appearance. If you need additional changes on a block,
-place them into a function corresponsing to the modifier. Like the following:
+place them into a function corresponding to the modifier. Like the following:
 
 ```js
 modules.define('i-bem__dom', function(provide, DOM) {
@@ -269,12 +269,12 @@ provide(DOM);
 });
 ```
 Here you can run your calculations, or code any functionality of the block. As
-there is access to the block DOM node and its children, the DOM structure can
+there is access to the block's DOM node and its children, the DOM structure can
 also be changed.<br/>
 With the `elem` helper you can select the elements of the block by their names.
 
-The conception of pre-defined block states expressed with modifiers, is a very
-powerful and efficient way to describe an interface compomemnt.<br/>
+The concept of pre-defined block states expressed with modifiers is a very
+powerful and efficient way to describe an interface component.<br/>
 Everything related to a particular block state is encapsulated in a relevant modifier.
 From wherever you change a block modifier, it knows what to do.<br/>
 Modifiers are described in a declarative manner, which empowers a programmer to extend
@@ -311,7 +311,7 @@ each of which can have a `status` modifier with its `on` and `off` value. As fol
 [traffic-light.js](https://github.com/toivonen/bem-js-tutorial/blob/master/desktop.bundles/003-element-modifier/blocks/traffic-light/traffic-light.js).
 
 Similar to the previous example, the `traffic-light` block is introduced to the
-`i-bem` core as a DOM-equiped block.
+`i-bem` core as a DOM-equipped block.
 
 ```js
 modules.define('i-bem__dom', function(provide, DOM) {
@@ -337,7 +337,7 @@ The traffic light works by switching its `status` modifier from the `stop` to th
 a modifier `status_stop` to the block, so that the cycle begins.
 
 The `status` modifier is declared with its callback, once for all its values. This
-is a good way to get rid of copy&paste if the corresponsing states work similarly.
+is a good way to get rid of copy&paste if the corresponding states work similarly.
 
 ```js
 modules.define('i-bem__dom', function(provide, DOM) {
@@ -473,7 +473,7 @@ example demonstrates.
 It shows a `switch` block, which is a nice button, with its `switched_off`
 modifier meaning that the button is inactive at the moment. The
 [switch.js](https://github.com/toivonen/bem-js-tutorial/blob/master/desktop.bundles/004-toggle-mod/blocks/switch/switch.js)
-file of the block instucts the button to react to user clicks and toggle the
+file of the block instructs the button to react to user clicks and toggle the
 modifier from `switched_off` to `switched_on` and backwards by using the
 `toggleMod` helper.
 
@@ -589,7 +589,7 @@ here.
 >> <a href="http://varya.me/bem-js-tutorial/desktop.bundles/006-before-set-mod/006-before-set-mod.html">006-before-set-mod.html</a></pre>
 
 Besides the possibility to react on a modifier setting, you can do something
-before that happens. It is widely adopted for teh cases when you need to prevent
+before that happens. It is widely adopted for the cases when you need to prevent
 setting a modifier.
 
 The
@@ -685,7 +685,7 @@ In the previous examples all the blocks on a page were initialized after
 `domReady`. Although on a page full of block it is not needed to initialize all
 the components at once. Sometimes a user loads a page just to press one button
 on it. So, a better way is to save calculation time and browser memory
-initializing block intratces only when a user starts operating on them.
+initializing block only when a user starts operating on them.
 
 This is the so-called `live initialization` (or `lazy`).
 
@@ -739,7 +739,7 @@ On the
 page you can see the text in Dutch. Actually, this text is divided into a lot of
 pieces phrase by phrase. Then, they are framed with a `translate` block.
 
-If a user readign the text does not understand its meaning he/she can see a
+If a user reading the text does not understand its meaning he/she can see a
 translation for an unclear phrase by clicking on the text.
 
 ```html
@@ -834,13 +834,13 @@ dynamically changed pages. This you can see with the following example.
 
 This page provides absolutely the same `translate` block as the previous one.
 But there is also a piece of crazy inline JavaScript on a page which works when a
-user clicks the pink button and dynamically append a few of new `trasnlate`
+user clicks the pink button and dynamically append a few of new `translate`
 blocks to the page. Then, with clicking on the phrases of this fresh joke you can
 see that it work absolutely the same as the other `translate` blocks being on the
 page at the beginning.
 
 The core of `i-bem` framework listens to the events on the `document` object. So,
-when a user clicks any `trabslate` block, this click bubbles up to the `document`
+when a user clicks any `translate` block, this click bubbles up to the `document`
 and core initializes the block as it was instructed it its `live` section.
 
 ### Binding to live events
@@ -862,7 +862,7 @@ buttons](http://varya.me/bem-js-tutorial/desktop.bundles/011-live-bind-to/011-li
 shows that live events can be reacted not once when initializing a block but
 every time.
 
-This `button` block is again equipted with live inialization instructions since
+This `button` block is again equipped with live initialization instructions since
 it would be madness to initialize all the 100 buttons at once and then listen to
 the clicks on each of them.
 
@@ -1075,7 +1075,7 @@ provide(DOM);
 
 This approach makes the control behaviour consistent. No matter how a user or
 another piece of JavaScript or a browser start to interact with the component,
-it will work fine. Getting the `focused` modifier from something, it would focuse
+it will work fine. Getting the `focused` modifier from something, it would focus
 the embedded input control. Having the control focused, it would set `focused`
 modifier to itself providing the proper view. When changed either manually or
 automatically the block would get `checked` modifier and a `checked` attribute
