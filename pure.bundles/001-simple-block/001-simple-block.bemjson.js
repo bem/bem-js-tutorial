@@ -4,7 +4,7 @@
     favicon: '/favicon.ico',
     head: [
         { elem: 'css', url: '_001-simple-block.css', ie: false },
-        { elem: 'css', url: '_001-simple-block', ie: true },
+        { elem: 'css', url: '_001-simple-block.ie.css', ie: true },
         { elem: 'meta', attrs: { name: 'description', content: '' }}
     ],
     content:[
