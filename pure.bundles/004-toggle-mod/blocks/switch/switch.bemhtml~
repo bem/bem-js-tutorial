@@ -1,11 +1,10 @@
 block('switch')(
 
     js()(true),
-    
+
     mix()({ mods: { 'switched' : 'off' }}),
-    
-    content()(function () {
-    	return[
+
+    content()([
         {
             elem: 'input',
             name: this.ctx.name
@@ -14,18 +13,18 @@ block('switch')(
             elem: 'label',
             content: '&#xF011;'
         }
-    	]
-    }),
-    
+    ]),
+
     elem('input')(
         tag()('input'),
-        attrs()(function (){
-            type: 'checkbox'
+        attrs()({
+            type: 'checkbox',
             name: this.ctx.name
         })
     ),
-    
+
     elem('label')(
         tag()('label')
     )
+
 );
