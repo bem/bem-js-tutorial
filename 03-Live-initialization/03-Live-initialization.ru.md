@@ -8,7 +8,8 @@
 действиями.
 
 В предыдущих примерах все блоки инициализировались по `domReady`. Хотя на
-страницах со множеством блоков нет никакой нужды инициализировать все сразу.
+страницах со множеством блоков нет никакой нужды инициализировать всё сразу.
+
 Иногда пользователь загружает страницу только чтобы нажать на ней
 одну-единственную кнопку. Так что лучше сэкономить на вычислениях и памяти
 браузера, проинициализировав компонент только когда пользователь начал с ним
@@ -16,7 +17,7 @@
 
 Это называется «живая» или «ленивая» инициализация.
 
-## Статический метод `live`
+## Статический метод live
 
 Инструкции по ленивой инициализации блока даются в статическом методе `live`.
 
@@ -28,10 +29,9 @@ provide(BEMDOM.decl(this.name, {
         ...
     },
     ...
-},{
+}, {
     live: function() {
-        // Здесь можно сказать, когда инициализировать
-        // экземпляр блока
+        // Здесь можно сказать, когда инициализировать экземпляр блока
     }
 }));
 
@@ -39,28 +39,30 @@ provide(BEMDOM.decl(this.name, {
 ```
 
 В предыдущих примерах вообще не было статических методов. Это рассматривалось
-как то, что свойство `live` имеет значение `false`.<br/>
+как то, что свойство `live` имеет значение `false`.
+
 А в данном примере это функция, так что ядро понимает, что блок не нужно сразу
 инициализировать, а нужно подождать возникновения специальных условий. Это может
 быть, например, DOM-событие на блоке или элементе.
 
 ## Инициализация блока по DOM-событию
 
-<pre>├── pure.bundles/
-│   ├── 010-live-init-on-event/
-│   │   ├── blocks/
-│   │   │   ├── .bem/
-│   │   │   ├── text/
-│   │   │   └── translate/
-│   │   │       ├── <a href="https://github.com/bem/bem-js-tutorial/blob/master/pure.bundles/010-live-init-on-event/blocks/translate/translate.bemhtml">translate.bemhtml</a>
-│   │   │       ├── <a href="https://github.com/bem/bem-js-tutorial/blob/master/pure.bundles/010-live-init-on-event/blocks/translate/translate.css">translate.css</a>
-│   │   │       └── <a href="https://github.com/bem/bem-js-tutorial/blob/master/pure.bundles/010-live-init-on-event/blocks/translate/translate.js">translate.js</a>
-│   │   └── <a href="https://github.com/bem/bem-js-tutorial/blob/master/pure.bundles/010-live-init-on-event/010-live-init-on-event.bemjson.js">010-live-init-on-event.bemjson.js</a>
-
->> <a href="http://bem.github.io/bem-js-tutorial/pure.bundles/010-live-init-on-event/010-live-init-on-event.html">010-live-init-on-event.html</a></pre>
+```files
+pure.bundles/
+    010-live-init-on-event/
+        blocks/
+            text/
+                translate/
+                    translate.bemhtml.js
+                    translate.css
+                    translate.js
+        010-live-init-on-event.bemjson.js
+        010-live-init-on-event.html
+```
 
 На странице
-[010-live-init-on-event.html](http://bem.github.io/bem-js-tutorial/pure.bundles/010-live-init-on-event/010-live-init-on-event.html)
+[010-live-init-on-event.html](https://bem.github.io/bem-js-tutorial/pure.bundles/010-live-init-on-event/010-live-init-on-event.html)
+([BEMJSON](https://github.com/bem/bem-js-tutorial/blob/master/pure.bundles/010-live-init-on-event/010-live-init-on-event.bemjson.js))
 вы можете увидеть историю, написанную на голландском языке. На самом деле текст
 разделен на множество маленьких кусочков по фразам. Каждая фраза завернута в
 блок `translate`.
@@ -83,7 +85,8 @@ provide(BEMDOM.decl(this.name, {
 
 Обратите внимание, что у блока нет класса `translate_js_inited`, он не
 появляется даже при полной загрузке страницы. Это означает, что и
-JavaScript-объект, соответствующий экземпляру блока, пока не создан.<br/>
+JavaScript-объект, соответствующий экземпляру блока, пока не создан.
+
 В файле
 [translate.js](https://github.com/bem/bem-js-tutorial/blob/master/pure.bundles/010-live-init-on-event/blocks/translate/translate.js)
 сказано, что блок нужно инициализировать тогда, когда на его DOM-узле случится
@@ -104,7 +107,7 @@ provide(BEMDOM.decl(this.name, {
 ```
 
 По клику ядро устанавливает для блока модификатор `js_inited` и запускает
-«конструктор» — функцию, проассоциированную с этим модификатором.
+конструктор — функцию, проассоциированную с этим модификатором.
 
 ```js
 modules.define('translate', ['i-bem__dom'], function(provide, BEMDOM) {
@@ -133,8 +136,9 @@ provide(BEMDOM.decl(this.name, {
 
 Вложенному элементу `prompt` назначается модификатор `visible` со значением
 `true`, что делает его видимым на странице. Также это означает, что из
-параметров блока берется перевод — свойство `this.params.prompt` — и
-вставляется внутрь элемента.<br/>
+параметров блока берётся перевод — свойство `this.params.prompt` — и
+вставляется внутрь элемента.
+
 На самом деле текст перевода можно было и раньше вставить в элемент, ведь он не
 был виден пользователю. Но для демонстрации того, как получать параметры из
 `data-bem`, выбран этот вариант.
@@ -143,18 +147,18 @@ provide(BEMDOM.decl(this.name, {
 множеством блоков ядро инициализирует только те, на которых произошло слушаемое
 событие. Это экономит память и страница работает быстрее.
 
-В основе лежит 
-[делегирование событий](http://davidwalsh.name/event-delegate). То есть, несмотря на
-то, что блоков много, есть всего один обработчик события `click` на объекте
-`document`.<br/>
+В основе лежит
+[делегирование событий](https://davidwalsh.name/event-delegate). То есть, несмотря
+на то, что блоков много, есть всего один обработчик события `click` на объекте
+`document`.
+
 Это не только выгодно с точки зрения производительности, но и добавляет гибкости
 для программирования динамически изменяемых страниц. В этом вы можете убедиться
 на следующем примере.
 
 ## Делегированная инициализация
-<pre>
 
->> <a href="http://bem.github.io/bem-js-tutorial/pure.bundles/010_2-delegation/010_2-delegation.html">010_2-delegation.html</a></pre>
+[010_2-delegation.html](https://bem.github.io/bem-js-tutorial/pure.bundles/010_2-delegation/010_2-delegation.html)
 
 В этом примере используется блок `translate` — тот же самый, что и в предыдущем.
 Но кроме этого там есть страшный JavaScript. Он срабатывает, если пользователь
@@ -163,31 +167,33 @@ provide(BEMDOM.decl(this.name, {
 шутки, то увидите, что эти блоки работают абсолютно так же, как и те, что
 присутствовали на странице с самого начала.
 
-Ядро фреймворка `i-bem` слушает события на объекте `document`. Когда
-пользователь кликает по блокам, событие поднимается наверх до `document`, и ядро
-инициализирует блок, следуя инструкциям в секции `live`.
+Ядро фреймворка i-bem слушает события на объекте `document`. Когда пользователь
+кликает по блокам, событие поднимается наверх до `document`, и ядро инициализирует
+блок, следуя инструкциям в секции `live`.
 
 ## Обработчики live событий
-<pre>├── pure.bundles/
-│   ├── 011-live-bind-to/
-│   │   ├── blocks/
-│   │   │   ├── .bem/
-│   │   │   ├── button/
-│   │   │   |   ├── <a href="https://github.com/bem/bem-js-tutorial/blob/master/pure.bundles/011-live-bind-to/blocks/button/button.bemhtml">button.bemhtml</a>
-│   │   │   |   ├── <a href="https://github.com/bem/bem-js-tutorial/blob/master/pure.bundles/011-live-bind-to/blocks/button/button.css">button.css</a>
-│   │   │   |   └── <a href="https://github.com/bem/bem-js-tutorial/blob/master/pure.bundles/011-live-bind-to/blocks/button/button.js">button.js</a>
-│   │   │   └── page/
-│   │   └── <a href="https://github.com/bem/bem-js-tutorial/blob/master/pure.bundles/011-live-bind-to/011-live-bind-to.bemjson.js">011-live-bind-to.bemjson.js</a>
 
->> <a href="http://bem.github.io/bem-js-tutorial/pure.bundles/011-live-bind-to/011-live-bind-to.html">011-live-bind-to.html</a></pre>
+```files
+pure.bundles/
+    011-live-bind-to/
+        blocks/
+            button/
+                button.bemhtml.js
+                button.css
+                button.js
+            page/
+        011-live-bind-to.bemjson.js
+        011-live-bind-to.html
+```
 
 Следующий пример — [страница со 100 BonBon
-кнопками](http://bem.github.io/bem-js-tutorial/pure.bundles/011-live-bind-to/011-live-bind-to.html)
-— показывает, что реагировать на live события можно всегда,
-а не только при инициализации.
+кнопками](https://bem.github.io/bem-js-tutorial/pure.bundles/011-live-bind-to/011-live-bind-to.html)
+([BEMJSON](https://github.com/bem/bem-js-tutorial/blob/master/pure.bundles/011-live-bind-to/011-live-bind-to.bemjson.js))
+— показывает, что реагировать на live события можно всегда, а не только при
+инициализации.
 
 У представленного на странице блока `button` есть live инициализация. Было бы
-неразумно инициализировать их все сразу, и на каждом слушать событие click.
+неразумно инициализировать их все сразу, и на каждом слушать событие `click`.
 
 ```js
 modules.define('button', ['i-bem__dom'], function(provide, BEMDOM) {
@@ -196,7 +202,9 @@ provide(BEMDOM.decl(this.name, {
     onSetMod: {
         'js' : {
             'inited' : function() {
-                console.log('Here an object of ' + this.domElem[0].innerHTML + ' comes. Just once.');
+                var button = this.domElem[0].innerHTML;
+
+                console.log('Here an object of ' + button + ' comes. Just once.');
             }
         }
     },
@@ -211,8 +219,9 @@ provide(BEMDOM.decl(this.name, {
 ```
 
 Также как и в предыдущем примере (где использовался `liveInitOnEvent`), этот код
-инициализирует блок и запускает callback модификатора `js_inited`. Но разница
-состоит в том, что `liveBindTo` говорит запускать callback не только при
+инициализирует блок и запускает callback модификатора `js_inited`.
+
+Но разница состоит в том, что `liveBindTo` говорит запускать callback не только при
 инициализации, а каждый раз когда пользователь кликает по кнопке.
 
 ```js
@@ -237,23 +246,25 @@ provide(BEMDOM.decl(this.name, {
 ```
 
 ## Инициализация по нескольким событиям
-<pre>├── pure.bundles/
-│   ├── 012-live-init-many-events/
-│   │   ├── blocks/
-│   │   │   ├── .bem/
-│   │   │   ├── checkbox/
-│   │   │   |   ├── <a href="https://github.com/bem/bem-js-tutorial/blob/master/pure.bundles/012-live-init-many-events/blocks/checkbox/checkbox.bemhtml">checkbox.bemhtml</a>
-│   │   │   |   ├── <a href="https://github.com/bem/bem-js-tutorial/blob/master/pure.bundles/012-live-init-many-events/blocks/checkbox/checkbox.css">checkbox.css</a>
-│   │   │   |   └── <a href="https://github.com/bem/bem-js-tutorial/blob/master/pure.bundles/012-live-init-many-events/blocks/checkbox/checkbox.js">checkbox.js</a>
-│   │   │   └── page/
-│   │   └── <a href="https://github.com/bem/bem-js-tutorial/blob/master/pure.bundles/012-live-init-many-events/012-live-init-many-events.bemjson.js">012-live-init-many-events.bemjson.js</a>
 
->> <a href="http://bem.github.io/bem-js-tutorial/pure.bundles/012-live-init-many-events/012-live-init-many-events.html">012-live-init-many-events.html</a></pre>
+```files
+pure.bundles/
+    012-live-init-many-events/
+        blocks/
+            checkbox/
+                checkbox.bemhtml.js
+                checkbox.css
+                checkbox.js
+            page/
+        012-live-init-many-events.bemjson.js
+        012-live-init-many-events.html
+```
 
 В предыдущих примерах инициализация блоков проходила по возникновению на них
 события `click`. Но иногда слушать одно-единственное событие недостаточно.
 Пример
-[012-live-init-many-events](http://bem.github.io/bem-js-tutorial/pure.bundles/012-live-init-many-events/012-live-init-many-events.html)
+[012-live-init-many-events](https://bem.github.io/bem-js-tutorial/pure.bundles/012-live-init-many-events/012-live-init-many-events.html)
+([BEMJSON](https://github.com/bem/bem-js-tutorial/blob/master/pure.bundles/012-live-init-many-events/012-live-init-many-events.bemjson.js))
 демонстрирует такой случай на кастомизированном checkbox.
 
 ```html
@@ -291,10 +302,11 @@ provide(BEMDOM.decl(this.name, {
 Здесь тоже используется метод `liveBindTo`, чтобы не только проинициализировать
 блок, но и запускать callback на следующих кликах. Заметьте, что здесь
 использован опциональный параметр с именем элемента `label`, т.к. нас интересуют
-клики именно на нем.
+клики именно на нём.
 
 Кроме того, контрол может быть изменен с клавиатуры (или другим JavaScript), и
-это тоже нужно учесть.<br/>
+это тоже нужно учесть.
+
 Внутри метода `live` можно поместить столько инструкций по инициализации,
 сколько нужно для данного блока. Здесь она случается по клику на элементе
 `label` и по событию `change` элемента `control` (это узел `input`).
@@ -339,12 +351,12 @@ provide(BEMDOM.decl(this.name, {
             this._onClick();
         });
 
-        this.liveBindTo('control', 'change', function(e){
+        this.liveBindTo('control', 'change', function(e) {
             this._onChange(e);
         });
 
-        this.liveBindTo('control', 'focusin focusout', function(e){
-            this.setMod('focused', e.type == 'focusin'? true : false);
+        this.liveBindTo('control', 'focusin focusout', function(e) {
+            this.setMod('focused', e.type == 'focusin');
         });
     }
 }));
@@ -387,18 +399,19 @@ provide(BEMDOM.decl(this.name, {
 Такой подход позволяет описать компонент консистентно. Вне зависимости от того,
 как начнет использоваться блок — взаимодействуя с пользователем, или из другого
 JavaScript страницы, или реагируя на события в браузере — он будет работать как
-задумано. Получив модификатор `focused`, блок установит фокус на встроенном в
-него input. И наоборот — увидев, что встроенный input по каким-то причинам
-получил focus, блок установит себе модификатор `focused` и таким образом
-приобретет нужный внешний вид. При изменении блока — и вручную, и автоматически
-— блок получит модификатор `checked` и задаст атрибут `checked` встроенному
-input или снимет их.
+задумано.
+
+Получив модификатор `focused`, блок установит фокус на встроенном в него `input`.
+И наоборот — увидев, что встроенный `input` по каким-то причинам получил фокус, блок
+установит себе модификатор `focused` и таким образом приобретет нужный внешний вид.
+
+При изменении блока — и вручную, и автоматически — блок получит модификатор
+`checked` и задаст атрибут `checked` встроенному `input` или снимет их.
 
 ### Почему не :checked?
 
-Как вы могли заметить, в этом примере выделенность встроенного элемента
-`control` (input) проверяется при помощи модификатора `checked` соответствующего
-блока.
+Как вы могли заметить, в этом примере выделенность встроенного элемента `control`
+(input) проверяется при помощи модификатора `checked` соответствующего блока.
 
 ```html
 <span
@@ -425,8 +438,7 @@ input или снимет их.
 ```
 
 Конечно можно было бы воспользоваться псевдо-селектором `:checked` как это
-сделано здесь:
-[control prototype](http://codepen.io/bbodine1/pen/novBm).
+сделано здесь: [control prototype](https://codepen.io/bbodine1/pen/novBm).
 
 ```css
 .checkbox input[type=checkbox]:checked + label {
@@ -454,15 +466,18 @@ input или снимет их.
 
 ## БЭМ-события
 
-Кроме DOM-событий `i-bem.js` умеет работать с кастомными JavaScript событиями
-на объектах, соответствующих блокам. Эти события назваются `БЭМ-события` и
+Кроме DOM-событий i-bem.js умеет работать с кастомными JavaScript событиями
+на объектах, соответствующих блокам. Эти события назваются БЭМ-события и
 обычно составляют API блока.
 
-Примером порождения таких событий может быть [блок
-`link`](https://github.com/bem/bem-components/tree/a37156b9646b97472776b8ce035ca1736dc7257c/common.blocks/link)
-библиотеки `bem-components`. На JavaScript-объекте, соответствующем блоку,
-возникает кастомное событие `click` в том случае, если пользователь кликает по
-ссылке левой кнопкой, и ссылка не является неактивной в данный момент.
+Примером порождения таких событий может быть
+[блок `link`](https://github.com/bem/bem-components/tree/v3/common.blocks/link)
+библиотеки [bem-components](https://ru.bem.info/libs/bem-components/).
+
+На JavaScript-объекте, соответствующем блоку, возникает кастомное событие `click` в
+том случае, если пользователь кликает по ссылке левой кнопкой, и ссылка не является
+неактивной в данный момент.
+
 Запускается это событие при помощи метода `emit`.
 
 ```js
@@ -475,8 +490,7 @@ input или снимет их.
 Таким образом, блок `link` получает API, и им может воспользоваться любой другой
 блок страницы.
 
-Другим примером может служить
-[блок
+Другим примером может служить [блок
 `menu`](https://github.com/bem/bem-js-tutorial/tree/master/desktop.blocks/menu).
 Он представляет список пунктов меню в HTML, один из которых может быть выделен.
 
@@ -488,11 +502,13 @@ input или снимет их.
         Item 1
       </div>
     </li>
+
     <li class="menu__layout-unit">
       <div class="menu__item menu__item_state_current">
         Item 2
       </div>
     </li>
+
     <li class="menu__layout-unit">
       <div class="menu__item menu__item_state_current">
         Item 3
@@ -502,7 +518,7 @@ input или снимет их.
 </div>
 ```
 
-Блок слушает DOM-события click на своих элементах `item-selector` и запускает
+Блок слушает DOM-события `click` на своих элементах `item-selector` и запускает
 событие `current`, сигнализирующее о смене выделенного пункта меню и дающее
 данные о текущем пункте.
 
@@ -521,36 +537,34 @@ this
 
 ### Live инициализация по БЭМ-событию вложенного блока
 
-<pre>├── components.bundles/
-│   ├── 014-live-init-bem-event/
-│   │   ├── blocks/
-│   │   │   ├── .bem/
-│   │   │   ├── map-marks/
-│   │   │   |   ├── <a href="https://github.com/bem/bem-js-tutorial/blob/master/components.bundles/014-live-init-bem-event/blocks/map-marks/map-marks.bemhtml">map-marks.bemhtml</a>
-│   │   │   |   ├── <a href="https://github.com/bem/bem-js-tutorial/blob/master/components.bundles/014-live-init-bem-event/blocks/map-marks/map-marks.css">map-marks.css</a>
-│   │   │   |   └── <a href="https://github.com/bem/bem-js-tutorial/blob/master/components.bundles/014-live-init-bem-event/blocks/map-marks/map-marks.js">map-marks.js</a>
-│   │   │   ├── map/
-│   │   │   |   ├── <a href="https://github.com/bem/bem-js-tutorial/blob/master/components.bundles/014-live-init-bem-event/blocks/map/map.bemhtml">map.bemhtml</a>
-│   │   │   |   ├── <a href="https://github.com/bem/bem-js-tutorial/blob/master/components.bundles/014-live-init-bem-event/blocks/map/map.deps.js">map.deps.js</a>
-│   │   │   |   └── <a href="https://github.com/bem/bem-js-tutorial/blob/master/components.bundles/014-live-init-bem-event/blocks/map/map.js">map.js</a>
-│   │   │   ├── menu/
-│   │   │   |   └── <a href="https://github.com/bem/bem-js-tutorial/blob/master/components.bundles/014-live-init-bem-event/blocks/menu/menu.css">menu.css</a>
-│   │   │   └── page/
-│   │   └── <a href="https://github.com/bem/bem-js-tutorial/blob/master/components.bundles/014-live-init-bem-event/014-live-init-bem-event.bemjson.js">014-live-init-bem-event.bemjson.js</a>
+```files
+components.bundles/
+    014-live-init-bem-event/
+        blocks/
+            map-marks/
+                map-marks.bemhtml.js
+                map-marks.css
+                map-marks.js
+            map/
+                map.bemhtml.js
+                map.deps.js
+                map.js
+            menu/
+                menu.css
+            page/
+        014-live-init-bem-event.bemjson.js
+        014-live-init-bem-event.html
+```
 
->> <a href="http://bem.github.io/bem-js-tutorial/components.bundles/014-live-init-bem-event/014-live-init-bem-event.html">014-live-init-bem-event.html</a></pre>
-
-На этом примере вы можете видеть
-[блок
+На этом примере вы можете видеть [блок
 `map-marks`](https://github.com/varya/bem-js-tutorial/tree/master/components.bundles/014-live-init-bem-event/blocks/map-marks).
 Он связывает вместе блоки меню и карты таким образом, что пользователь кликающий
 по меню, может видеть соответствуюшую точку на карте.
 
-Блок `map-marks` содержит блок `menu` и `map`. Это можно увидеть из
-[bemjson описания
+Блок `map-marks` содержит блок `menu` и `map`. Это можно увидеть из [bemjson описания
 страницы](https://github.com/varya/bem-js-tutorial/blob/master/components.bundles/014-live-init-bem-event/014-live-init-bem-event.bemjson.js)
 или заглянув в HTML
-[014-live-init-bem-event.html](http://bem.github.io/bem-js-tutorial/components.bundles/014-live-init-bem-event/014-live-init-bem-event.html).
+[014-live-init-bem-event.html](https://bem.github.io/bem-js-tutorial/components.bundles/014-live-init-bem-event/014-live-init-bem-event.html).
 
 Этот блок нужен только при взаимодействии пользователя со страницей. Поэтому
 блок использует live-инициализацию, где сказано инициализировать блок только
@@ -567,7 +581,7 @@ provide(BEMDOM.decl(this.name, {
     ...
 }, {
     live: function() {
-        this.liveInitOnBlockInsideEvent('current', 'menu', function(e, data){
+        this.liveInitOnBlockInsideEvent('current', 'menu', function(e, data) {
             this._showMap(e, data.current);
         });
     }
@@ -576,8 +590,8 @@ provide(BEMDOM.decl(this.name, {
 });
 ```
 
-Методу `liveInitOnBlockInsideEvent` в качестве параметров передаются имя
-события, имя блока и callback.
+Методу `liveInitOnBlockInsideEvent` в качестве параметров передаются имя события,
+имя блока и callback.
 
 Как только пользователь кликает по какому-нибудь пункту меню, он становится
 активным, и на блоке `menu` возникает событие `current`. Событие ловится блоком
@@ -609,8 +623,8 @@ provide(BEMDOM.decl(this.name, {
 });
 ```
 
-Затем вызывается метод `_showMap` экземпляра блока. Он показывает точку на
-карте, обращаясь к блоку `map`.
+Затем вызывается метод `_showMap` экземпляра блока. Он показывает точку на карте,
+обращаясь к блоку `map`.
 
 ```js
 modules.define('map-marks', ['i-bem__dom', 'jquery'], function(provide, BEMDOM, $) {

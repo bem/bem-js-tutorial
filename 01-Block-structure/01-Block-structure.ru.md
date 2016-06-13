@@ -3,21 +3,24 @@
 ## Блок с JavaScript функциональностью
 
 ### Окружение
-Для того, чтобы начать писать на БЭМ-JavaScript, нужно подключить к странице блок `i-bem`, его элемент `dom` и все их зависимости. Это произойдет автоматически,
+
+Для того, чтобы начать писать JavaScript, нужно подключить к странице блок
+`i-bem`, его элемент `dom` и все их зависимости. Это произойдет автоматически,
 если полностью повторить в своём проекте структуру из репозитория
-[project-stub](https://github.com/bem/project-stub/).
+[project-stub](https://ru.bem.info/platform/project-stub/).
 
 ### HTML структура
+
 JavaScript можно написать для любого БЭМ блока. Для этого сначала нужно поместить
 JavaScript файл в директорию блока.
 
-```
-├── desktop.blocks/
-│   ├── my-block/
-│       └── my-block.js
+```files
+desktop.blocks/
+    my-block/
+        my-block.js
 ```
 
-Затем в BEMJSON описании страницы нужно пометить блок флагом `js`.
+Затем в [BEMJSON](https://ru.bem.info/platform/bemjson/) описании страницы нужно пометить блок флагом `js`.
 
 ```js
 {
@@ -26,7 +29,7 @@ JavaScript файл в директорию блока.
 }
 ```
 
-Это даст (после сборки и отработки BEMHTML шаблонов на JSON) DOM узел,
+Это даст (после сборки и отработки [BEMHTML](https://ru.bem.info/platform/bem-xjst/) шаблонов на JSON) DOM узел,
 помеченный дополнительным классом `i-bem` и атрибутом `data-bem` с параметрами
 блока.
 
@@ -37,8 +40,7 @@ JavaScript файл в директорию блока.
 ```
 
 Если вы не используете BEMJSON/BEMHTML, научите свои шаблоны производить такие
-блоки, или просто напишите этот HTML вручную. На таком HTML можно использовать
-БЭМ-JavaScript.
+блоки, или просто напишите этот HTML вручную.
 
 Атрибут `data-bem` нужен для хранения параметров блока в JSON. Структура
 используется следующая:
@@ -53,32 +55,29 @@ JavaScript файл в директорию блока.
 
 ## Простой пример с console.log
 
-<pre>├── pure.bundles/
-│   ├── 001-simple-block/
-│   │   ├── blocks/
-│   │   │   ├── .bem/
-│   │   │   └── my-block/
-│   │   │       └── <a href="https://github.com/bem/bem-js-tutorial/blob/master/pure.bundles/001-simple-block/blocks/my-block/my-block.js">my-block.js</a>
-│   │   └── <a href="https://github.com/bem/bem-js-tutorial/blob/master/pure.bundles/001-simple-block/001-simple-block.bemjson.js">001-simple-block.bemjson.js</a>
+```files
+pure.bundles/
+    001-simple-block/
+        blocks/
+            my-block/
+                my-block.js
+        001-simple-block.bemjson.js
+        001-simple-block.html
+```
 
->> <a href="http://bem.github.io/bem-js-tutorial/pure.bundles/001-simple-block/001-simple-block.html">001-simple-block.html</a></pre>
+Первый пример — самый простой. Он показывает структуру блока и работающий JavaScript.
 
-Первый пример — самый простой. Он показывает структуру блока и работающий
-JavaScript.<br/>
 Загрузите пример
-[001-simple-block](http://bem.github.io/bem-js-tutorial/pure.bundles/001-simple-block/001-simple-block.html)
-в браузере с открытой консолью, и вы увидите вывод строки, соответствующей
-`outerHTML` блока.
+[001-simple-block](https://bem.github.io/bem-js-tutorial/pure.bundles/001-simple-block/001-simple-block.html) в браузере с открытой консолью, и вы увидите вывод строки,
+соответствующей `outerHTML` блока.
 
 BEMJSON декларация этого примера
-[001-simple-block.bemjson.js](https://github.com/bem/bem-js-tutorial/blob/master/pure.bundles/001-simple-block/001-simple-block.bemjson.js)
-описывает простую страницу с одним-единственным блоком `my-block`.
+[001-simple-block.bemjson.js](https://github.com/bem/bem-js-tutorial/blob/master/pure.bundles/001-simple-block/001-simple-block.bemjson.js) описывает простую страницу с
+одним-единственным блоком `my-block`.
 
 Компонент `my-block` расположен на уровне переопределения
-[001-simple-block/blocks](https://github.com/bem/bem-js-tutorial/tree/master/pure.bundles/001-simple-block/blocks/my-block)
-и содержит JavaScript файл. Это файл
-[my-block.js](https://github.com/bem/bem-js-tutorial/blob/master/pure.bundles/001-simple-block/blocks/my-block/my-block.js),
-в нем довольно простой код.
+[001-simple-block/blocks](https://github.com/bem/bem-js-tutorial/tree/master/pure.bundles/001-simple-block/blocks/my-block) и содержит JavaScript файл. Это файл
+[my-block.js](https://github.com/bem/bem-js-tutorial/blob/master/pure.bundles/001-simple-block/blocks/my-block/my-block.js), в нём довольно простой код.
 
 ```js
 modules.define('my-block', ['i-bem__dom'], function(provide, BEMDOM) {
@@ -96,32 +95,31 @@ provide(BEMDOM.decl(this.name, {
 });
 ```
 
-Фреймворк `i-bem` использует 
-[модульную систему
-ymaps/modules](https://github.com/ymaps/modules). Поэтому первой строчкой
-указывается, какой модуль использует компонент. В данном случае это модуль
-`i-bem__dom`. Его можно найти в JavaScript файле элемента `dom` блока `i-bem`.
-[Посмотреть можно
-здесь](https://github.com/bem/bem-core/blob/v1/common.blocks/i-bem/__dom/i-bem__dom.js).
+Фреймворк i-bem использует [модульную систему ymaps/modules](https://github.com/ymaps/modules/blob/master/README.ru.md).
+
+Поэтому первой строчкой указывается, какой модуль использует компонент. В данном
+случае это модуль
+[`i-bem__dom`](https://github.com/bem/bem-core/blob/v3/common.blocks/i-bem/__dom/i-bem__dom.js),
+реализованный как элемент `dom` блока `i-bem` библиотеки
+[bem-core](https://en.bem.info/libs/bem-core/).
 
 Далее внутри вы можете использовать объект `BEMDOM` и его метод `decl` для описания
 вашего блока.
 
-Первый параметр — имя блока.<br/>
-Второй — хэш динамических свойств блока. Каждый экземпляр блока получает их
-копии.
+Первый параметр — имя блока.
+
+Второй — хэш динамических свойств блока. Каждый экземпляр блока получает их копии.
 
 Свойства могут быть какие угодно, но есть несколько специально
 зарезервированных. Одно из них — `onSetMod`, его можно увидеть в следующем примере.
 Оно используется для хранения функций callback, которые нужно позвать, если блоку
-назначается соответствующий модификатор. Синтаксис вот такой:
+назначается соответствующий модификатор.
 
 ```js
 BEMDOM.decl(this.name, {
     onSetMod: {
         'foo' : function() {
-            // Вызывается, если блоку назначается любое значение
-            // модификатора 'foo'.
+            // Вызывается, если блоку назначается любое значение модификатора 'foo'.
             // Работает и для 'булевых' модификаторов
         },
         'bar' : {
@@ -130,12 +128,10 @@ BEMDOM.decl(this.name, {
                 // 'bar' со значением 'qux'
             },
             '' : function() {
-                // Вызывается, если модификатор 'bar' удаляется
-                // с блока
+                // Вызывается, если модификатор 'bar' удаляется с блока
             },
             '*' : function() {
-                // Запускается при назначению блока любого значения
-                // модификатора bar
+                // Запускается при назначению блока любого значения модификатора bar
             }
         },
         '*' : function() {
@@ -148,16 +144,16 @@ BEMDOM.decl(this.name, {
 В эти функции callback приходят следующие параметры:
 
 ```js
-function(modName, modVal, curModVal) {
+function(modName, modVal, currentModVal) {
 
     // modName
     // Имя модификатора
 
     // modVal
-    // Значение для устанавливаемого модификатора. Это `String`,
-    // или `true`/`false` в случае булевых модификаторов.
+    // Значение для устанавливаемого модификатора.
+    // Это `String`, или `true`/`false` в случае булевых модификаторов.
 
-    // curModVal
+    // currentModVal
     // Текущее значение модификатора
 
 }
@@ -165,8 +161,10 @@ function(modName, modVal, curModVal) {
 
 Первый модификатор, устанавливаемый на блок — это модификатор `js` со значением
 `inited`.
+
 Ядро фреймворка ищет на странице все блоки, промаркированные дополнительным
 классом `i-bem`, инициализирует их и назначает каждому модификатор `js_inited`.
+
 Таким образом, вы можете написать код, который запустится в самом начале работы
 блока. Такой код нужно поместить в callback, соответствующий установке
 модификатора `js_inited`.
