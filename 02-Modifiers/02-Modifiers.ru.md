@@ -366,14 +366,14 @@ pure.bundles/
 [todo.js](https://github.com/bem/bem-js-tutorial/blob/master/pure.bundles/005-modifier-removing/blocks/todo/todo.js).
 
 ```js
-modules.define('todo', ['i-bem__dom'], function(provide, BEMDOM) {
+modules.define('todo', ['i-bem__dom', jquery], function(provide, BEMDOM, $) {
 
 provide(BEMDOM.decl(this.name, {
     onSetMod: {
         'js' : {
             'inited' : function() {
                 this.bindTo(this.elem('task'), 'click', function(e) {
-                    this.delMod(e.domElem, 'visible');
+                    this.delMod($(e.currentTarget), 'visible');
                 });
             }
         }
