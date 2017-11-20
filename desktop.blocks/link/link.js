@@ -1,8 +1,8 @@
-modules.define('link', ['i-bem__dom'], function(provide, BEMDOM) {
+modules.define('link', ['i-bem-dom'], function(provide, bemDom) {
 /**
  * Link
  */
-provide(BEMDOM.decl(this.name, {
+provide(bemDom.declBlock(this.name, {
 
     /**
      * @private

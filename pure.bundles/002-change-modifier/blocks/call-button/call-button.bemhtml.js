@@ -3,7 +3,7 @@ block('call-button')(
     content()(function() {
         return {
             elem: 'link',
-            content: this.ctx.content
+            content: applyNext()
         };
     }),
     elem('link')(

@@ -5,15 +5,15 @@ block('menu')(
             this.ctx.title,
             {
                 elem: 'layout',
-                content: this.ctx.content
+                content: applyNext()
             }
         ];
     }),
 
     elem('layout').tag()('ul'),
 
-    elem('item').def()(function() {
-        applyNext({
+    elem('item').wrap()(function() {
+        return applyNext({
             position: this.position - 1,
             ctx: {
                 elem: 'layout-unit',

@@ -6,7 +6,7 @@ block('translate')(
 
     content()(function() {
         return [
-            this.ctx.content,
+            applyNext(),
             { elem: 'prompt' }
         ];
     }),

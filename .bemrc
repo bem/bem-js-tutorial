@@ -1,0 +1,37 @@
+module.exports = {
+    root: true,
+
+    levels: {
+        'desktop.blocks': {},
+        'pure.bundles': {},
+        'components.bundles': {}
+    },
+
+    modules: {
+        'bem-tools': {
+            plugins: {
+                create: {
+                    templates: {
+                        'bemjson.js': '.bem/templates/bemjson.js',
+                    },
+                    techs: ['css', 'js'],
+                    levels: {
+                        'pure.bundles': {
+                            techs: [
+                                'bemjson.js',
+                            ],
+                        },
+                        'components.bundles': {
+                            techs: [
+                                'bemjson.js',
+                            ],
+                        },
+                        'desktop.blocks': {
+                            default: true
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

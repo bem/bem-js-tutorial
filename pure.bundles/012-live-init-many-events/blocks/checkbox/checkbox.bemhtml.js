@@ -9,7 +9,7 @@ block('checkbox')(
         if (this.ctx.mods.checked) {
             attrs.checked = 'checked'
         }
-        applyNext();
+        return applyNext();
     }),
 
     tag()('span'),

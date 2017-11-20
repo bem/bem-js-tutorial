@@ -1,6 +1,7 @@
-modules.define('menu', ['i-bem__dom', 'jquery'], function(provide, BEMDOM, $) {
+// TODO: fixme
+modules.define('menu', ['i-bem-dom', 'jquery'], function(provide, bemDom, $) {
 
-provide(BEMDOM.decl(this.name, {
+provide(bemDom.declBlock(this.name, {
 
     onElemSetMod : {
 
